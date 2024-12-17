@@ -2,7 +2,7 @@
 
 The Activity Tracker is a Quasar-based app designed to help users effectively manage their time and activities. With an intuitive interface, users can track the time spent on various personal activities, view detailed histories of their activity logs, and edit their activities. 
 
-![ss1](https://imgur.com/lSsxCoa.png)  
+![ss1](https://i.imgur.com/a1xmAvC.png)  
 
 ## Key Features:
 
