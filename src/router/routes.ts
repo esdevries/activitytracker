@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -9,8 +9,8 @@ const routes: RouteRecordRaw[] = [
     path: '/track',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-    { path: '', name: 'track', component: () => import('pages/TrackPage.vue') },
-    { path: 'add', name: 'add', component: () => import('pages/AddTrackPage.vue') }
+      { path: '', name: 'track', component: () => import('pages/TrackPage.vue') },
+      { path: 'add', name: 'add', component: () => import('pages/AddTrackPage.vue') },
     ],
   },
   {
@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', name: 'activities', component: () => import('pages/ActivitiesPage.vue') },
       { path: ':id', name: 'viewer', component: () => import('pages/ActivityView.vue') },
-      { path: ':id/edit', name: 'edit', component: () => import('pages/ActivityEditPage.vue') }
+      { path: ':id/edit', name: 'edit', component: () => import('pages/ActivityEditPage.vue') },
     ],
   },
 
@@ -30,6 +30,6 @@ const routes: RouteRecordRaw[] = [
     name: '404',
     component: () => import('pages/ErrorNotFound.vue'),
   },
-];
+]
 
-export default routes;
+export default routes

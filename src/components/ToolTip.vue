@@ -5,35 +5,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject, watch } from 'vue';
-import { TextToSpeech } from '@capacitor-community/text-to-speech';
-import type { QTooltipProps } from 'quasar';
+import { ref, inject, watch } from 'vue'
+import { TextToSpeech } from '@capacitor-community/text-to-speech'
+import type { QTooltipProps } from 'quasar'
 
-const soundOn = inject('soundOn', ref(true));
+const soundOn = inject('soundOn', ref(true))
 
 const props = defineProps<{
-  message: string;
-  color?: string;
-  anchor: QTooltipProps['anchor'];
-  offset?: [number, number];
-}>();
+  message: string
+  color?: string
+  anchor: QTooltipProps['anchor']
+  offset?: [number, number]
+}>()
 
 function handleShow() {
-  if (soundOn.value) { 
+  if (soundOn.value) {
     TextToSpeech.speak({
       text: props.message,
       lang: 'en',
     })
       .then(() => {
-        console.log('Tooltip message read aloud');
+        console.log('Tooltip message read aloud')
       })
       .catch((error) => {
-        console.error('Error reading tooltip message:', error);
-      });
+        console.error('Error reading tooltip message:', error)
+      })
   }
 }
 
-watch(() => soundOn.value, (newValue) => {
-  console.log('Sound is', newValue ? 'on' : 'off');
-});
+watch(
+  () => soundOn.value,
+  (newValue) => {
+    console.log('Sound is', newValue ? 'on' : 'off')
+  },
+)
 </script>

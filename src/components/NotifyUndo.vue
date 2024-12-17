@@ -3,15 +3,15 @@
 </template>
 
 <script setup lang="ts">
-import { Notify } from 'quasar';
-import { Activity } from 'app/model';
-import { defineProps, defineEmits, onMounted } from 'vue';
+import { Notify } from 'quasar'
+import { Activity } from 'app/model'
+import { defineProps, defineEmits, onMounted } from 'vue'
 
 const props = defineProps<{
-  modelValue: Activity | null;
-}>();
+  modelValue: Activity | null
+}>()
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue'])
 const undoDelete = () => {
   if (props.modelValue) {
     Notify.create({
@@ -19,7 +19,7 @@ const undoDelete = () => {
       color: 'green',
       timeout: 2000,
       position: 'bottom',
-    });
+    })
 
     Activity.create({
       id: props.modelValue.id,
@@ -27,11 +27,11 @@ const undoDelete = () => {
       description: props.modelValue.description || '',
       isTracked: props.modelValue.isTracked || false,
       history: props.modelValue.history || [],
-    });
+    })
 
-    emit('update:modelValue', null);
+    emit('update:modelValue', null)
   }
-};
+}
 
 onMounted(() => {
   Notify.create({
@@ -46,6 +46,6 @@ onMounted(() => {
         handler: undoDelete,
       },
     ],
-  });
-});
+  })
+})
 </script>

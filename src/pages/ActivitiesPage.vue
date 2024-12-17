@@ -8,19 +8,19 @@
 </template>
 
 <script setup lang="ts">
-import ActivityList from 'src/components/ActivityList.vue';
-import { useRouter } from 'vue-router';
-import { Activity } from 'app/model';
-import ToolTip from 'src/components/ToolTip.vue';
+import ActivityList from 'src/components/ActivityList.vue'
+import { useRouter } from 'vue-router'
+import { Activity } from 'app/model'
+import ToolTip from 'src/components/ToolTip.vue'
 
-const router = useRouter();
+const router = useRouter()
 
 function addActivity() {
   const activity = Activity.create({
     name: 'New Activity',
-    description: 'Time to edit your brand new activity.'
+    description: 'Time to edit your brand new activity.',
   })
 
-  router.push({ name: 'edit', params: { id: activity.id } });
+  router.push({ name: 'edit', params: { id: activity.id } })
 }
 </script>

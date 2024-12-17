@@ -12,11 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import type { EssentialLinkProps } from 'src/data';
+import type { EssentialLinkProps } from 'src/data'
 
 withDefaults(defineProps<EssentialLinkProps>(), {
   caption: '',
   link: '',
   icon: '',
-});
+})
 </script>

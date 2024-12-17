@@ -24,9 +24,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header class="text-h5 text-weight-bold">
-          Activity Tracker
-        </q-item-label>
+        <q-item-label header class="text-h5 text-weight-bold"> Activity Tracker </q-item-label>
 
         <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
@@ -39,49 +37,49 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, provide } from 'vue';
-import { useRoute } from 'vue-router';
-import EssentialLink from 'components/EssentialLink.vue';
-import type { EssentialLinkProps } from 'src/data';
-import ToolTip from 'src/components/ToolTip.vue';
-import { Activity } from 'app/model';
+import { ref, computed, provide } from 'vue'
+import { useRoute } from 'vue-router'
+import EssentialLink from 'components/EssentialLink.vue'
+import type { EssentialLinkProps } from 'src/data'
+import ToolTip from 'src/components/ToolTip.vue'
+import { Activity } from 'app/model'
 
-const route = useRoute();
+const route = useRoute()
 
 const currentPageTitle = computed(() => {
-  const path = route.path;
+  const path = route.path
 
   switch (true) {
     case path === '/track':
-      return 'Time Tracking';
+      return 'Time Tracking'
     case path === '/track/add':
-      return 'Add other activity';
+      return 'Add other activity'
     case path === '/activities':
-      return 'List of Activities';
+      return 'List of Activities'
     case /^\/activities\/\d+\/edit$/.test(path):
-      return 'Edit Activity';
+      return 'Edit Activity'
     case path.startsWith('/activities/'):
-      return 'View Activity';
+      return 'View Activity'
     default:
-      return 'My App';
+      return 'My App'
   }
-});
+})
 
 const linksList = computed((): EssentialLinkProps[] => {
-  const today = new Date();
-  const sevenDaysAgo = new Date(today);
-  sevenDaysAgo.setDate(today.getDate() - 7);
+  const today = new Date()
+  const sevenDaysAgo = new Date(today)
+  sevenDaysAgo.setDate(today.getDate() - 7)
 
   const recentActivities = Activity.all().filter((activity) => {
-    const mostRecentHistory = activity.history?.[activity.history.length - 1];
+    const mostRecentHistory = activity.history?.[activity.history.length - 1]
 
     if (mostRecentHistory) {
-      const activityStart = new Date(mostRecentHistory.begin);
-      return activityStart >= sevenDaysAgo;
+      const activityStart = new Date(mostRecentHistory.begin)
+      return activityStart >= sevenDaysAgo
     }
 
-    return false;
-  });
+    return false
+  })
 
   return [
     {
@@ -96,19 +94,19 @@ const linksList = computed((): EssentialLinkProps[] => {
       icon: 'fas fa-running',
       link: '/activities',
     },
-  ];
-});
+  ]
+})
 
-const leftDrawerOpen = ref(false);
-const soundOn = ref(true);
+const leftDrawerOpen = ref(false)
+const soundOn = ref(true)
 
-provide('soundOn', soundOn);
+provide('soundOn', soundOn)
 
 function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+  leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
 function toggleSound() {
-  soundOn.value = !soundOn.value;
+  soundOn.value = !soundOn.value
 }
 </script>
